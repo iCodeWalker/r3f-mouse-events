@@ -45,3 +45,19 @@
       onPointerMissed:
         1. When user clicks outside of the object.
         2. We can add it on the <Canvas> and it will be triggered when none of the objects listening to the click is clicked.
+
+    # Occluding
+
+      When one object is behind the other the click event is handled by the object behind the function will gets trigged because no obstruction is provided in r3f or three.js, we have to handle it.
+      Occlude means obstruction.
+
+      By default the Raycaster doesn't care about what's in front of the object being tested or the obeject handling the event.
+
+      To occlude the cube we can add an onClick event on the sphere and tell it to stop propagating the event.
+
+    # Cursor:
+
+      To transform the pointer into finger cursor to show the user that this object or area is clickable.
+
+      So we need to know when the mouse enters the cube and when it leaves the cube.
+      Add onPoinerEnter and onPointerLeave attributes to the cube mesh.

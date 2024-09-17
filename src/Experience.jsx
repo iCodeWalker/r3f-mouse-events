@@ -27,7 +27,12 @@ export default function Experience() {
       <directionalLight position={[1, 2, 3]} intensity={1.5} />
       <ambientLight intensity={0.5} />
 
-      <mesh position-x={-2}>
+      <mesh
+        position-x={-2}
+        onClick={(e) => {
+          e.stopPropagation(); // Occluding the object
+        }}
+      >
         <sphereGeometry />
         <meshStandardMaterial color="orange" />
       </mesh>
@@ -39,6 +44,9 @@ export default function Experience() {
         onClick={eventHandler}
         onContextMenu={eventHandler}
         onPointerOver={onPointerOverEventHandler}
+        // Adding cursor pointer
+        onPointerEnter={() => (document.body.style.cursor = "pointer")}
+        onPointerLeave={() => (document.body.style.cursor = "default")}
       >
         <boxGeometry />
         <meshStandardMaterial color="mediumpurple" />
