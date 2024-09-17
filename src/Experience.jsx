@@ -10,8 +10,14 @@ export default function Experience() {
   });
 
   // click event handling
-  const eventHandler = () => {
-    console.log("clicked");
+  const eventHandler = (event) => {
+    console.log("clicked", event);
+    // changing the color of cube on click
+    cube.current.material.color.set(`hsl(${Math.random() * 360}, 100%, 76%)`);
+  };
+
+  const onPointerOverEventHandler = (e) => {
+    console.log(e);
   };
 
   return (
@@ -26,7 +32,14 @@ export default function Experience() {
         <meshStandardMaterial color="orange" />
       </mesh>
 
-      <mesh ref={cube} position-x={2} scale={1.5} onClick={eventHandler}>
+      <mesh
+        ref={cube}
+        position-x={2}
+        scale={1.5}
+        onClick={eventHandler}
+        onContextMenu={eventHandler}
+        onPointerOver={onPointerOverEventHandler}
+      >
         <boxGeometry />
         <meshStandardMaterial color="mediumpurple" />
       </mesh>

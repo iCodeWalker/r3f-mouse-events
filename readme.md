@@ -6,3 +6,42 @@
     But r3f have made the process of mouse events or pointer events much easier and we won't have to implement a Raycaster.
 
     All we need to do is to add an onClick attribute to an object in our scene(like a mesh) and provide  it with a function.
+
+    # Event Information
+
+    We can access the event related information by passing an argument to the function.
+
+    A click implies that the pointer went down onto the object and then up again while remaining on teh object, If it started outside or ended outside the event doesn't count as a click.
+
+    # Other Events :
+
+      onContextMenu:
+        1. When the context menu appears (Right click).
+        2. On desktop it is Right click or ctrl + left click.
+        3. On mobile it is pressing down for some time.
+
+      onDoubleClick:
+        1. When we double click or tap on the same object.
+        2. The delay between the first and second click/tap is defined by the OS
+
+      onPointerUp:
+        1. When we release the click(left or right) or touch.
+
+      onPointerDown:
+        1. When we've just clicked or put our finger down.
+
+      onPointerOver / onPointerEnter:
+        1. When the cursor or finger just went above the object.
+        2. In native javascript onPointerOver will be triggered on the intersection of children nodes also and in onPointerEnter will trigger only when cursor entered the container and not on child intersections.
+        3. In r3f Both works the same.
+
+      onPointerOut / onPointerLeave:
+        1. When the cursor or finger just went out from the object.
+        2. In r3f Both works the same.
+
+      onPointerMove:
+        1. Trigger on each frame if the cursor moves above the object.
+
+      onPointerMissed:
+        1. When user clicks outside of the object.
+        2. We can add it on the <Canvas> and it will be triggered when none of the objects listening to the click is clicked.
