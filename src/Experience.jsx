@@ -1,9 +1,12 @@
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { meshBounds, useGLTF, OrbitControls } from "@react-three/drei";
 import { useRef } from "react";
 
 export default function Experience() {
   const cube = useRef();
+
+  // Load model
+  const hamburgerModel = useGLTF("./hamburger.glb");
 
   useFrame((state, delta) => {
     cube.current.rotation.y += delta * 0.2;
@@ -41,6 +44,7 @@ export default function Experience() {
         ref={cube}
         position-x={2}
         scale={1.5}
+        raycast={meshBounds}
         onClick={eventHandler}
         onContextMenu={eventHandler}
         onPointerOver={onPointerOverEventHandler}
@@ -56,6 +60,17 @@ export default function Experience() {
         <planeGeometry />
         <meshStandardMaterial color="greenyellow" />
       </mesh>
+
+      {/* Adding model to the scene */}
+      <primitive
+        object={hamburgerModel.scene}
+        scale={0.26}
+        position-y={0.6}
+        onClick={(event) => {
+          console.log("click", event.object.name);
+          event.stopPropagation();
+        }}
+      />
     </>
   );
 }

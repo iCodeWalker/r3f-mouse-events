@@ -46,7 +46,7 @@
         1. When user clicks outside of the object.
         2. We can add it on the <Canvas> and it will be triggered when none of the objects listening to the click is clicked.
 
-    # Occluding
+    # Occluding:
 
       When one object is behind the other the click event is handled by the object behind the function will gets trigged because no obstruction is provided in r3f or three.js, we have to handle it.
       Occlude means obstruction.
@@ -61,3 +61,36 @@
 
       So we need to know when the mouse enters the cube and when it leaves the cube.
       Add onPoinerEnter and onPointerLeave attributes to the cube mesh.
+
+    # Events on complex objects:
+
+      <primitive
+        object={hamburgerModel.scene}
+        scale={0.26}
+        position-y={0.6}
+        onClick={(event) => {
+          console.log("click", event.object.name);
+          event.stopPropagation();
+        }}
+      />
+
+      to listen to events on the whole group we can use : event.eventObject
+      to listern to events on the object we clicked on we can use : event.object
+
+    # Performance:
+
+      listening to pointer events is quite a taxing task for the CPU.
+      Specially on mobile devices.
+
+      Avoid events that need to be tested on each frame.
+        1. onPointerOver
+        2. onPointerEnter
+        3. onPointerOut
+        4. onPointerLeave
+        6. onPointerMove
+
+      Minimise the number of objects that lsitens to the events and avoid testing on complex geometries.
+
+      we can use "meshBounds", meshBounds will create a theoretical sphere around the mesh (called bounding sphere) and pointer events will be tested on the sphere instead of testing the geometry of the mesh.
+
+      meshBounds only works on single mesh.
